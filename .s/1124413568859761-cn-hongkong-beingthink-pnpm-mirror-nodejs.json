@@ -8,15 +8,15 @@
     "timeout": 60,
     "initializer": "",
     "initializationTimeout": 3,
-    "codeSize": 4028,
-    "codeChecksum": "16810543938394486453",
+    "codeSize": 4219,
+    "codeChecksum": "13463522777276243186",
     "memorySize": 128,
     "gpuMemorySize": null,
     "environmentVariables": {
       "NODE_PATH": "/opt/nodejs/node_modules"
     },
     "createdTime": "2023-09-26T06:43:44Z",
-    "lastModifiedTime": "2023-09-26T07:29:46Z",
+    "lastModifiedTime": "2023-09-26T08:03:07Z",
     "instanceConcurrency": 1,
     "instanceSoftConcurrency": null,
     "customContainerConfig": null,
