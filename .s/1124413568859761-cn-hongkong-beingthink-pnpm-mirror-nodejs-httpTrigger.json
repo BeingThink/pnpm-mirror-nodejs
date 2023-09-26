@@ -1,0 +1,25 @@
+{
+  "statefulConfig": {
+    "triggerName": "httpTrigger",
+    "description": "",
+    "triggerId": "d1ab70df-5956-4585-9258-e0ad73dcba0d",
+    "sourceArn": null,
+    "triggerType": "http",
+    "invocationRole": null,
+    "qualifier": "LATEST",
+    "urlInternet": "https://pnpm-mir-nodejs-beingthink-ltmnxosnmu.cn-hongkong.fcapp.run",
+    "urlIntranet": "https://pnpm-mir-nodejs-beingthink-ltmnxosnmu.cn-hongkong-vpc.fcapp.run",
+    "triggerConfig": {
+      "methods": [
+        "GET"
+      ],
+      "authType": "anonymous",
+      "disableURLInternet": false
+    },
+    "createdTime": "2023-09-26T06:43:44Z",
+    "lastModifiedTime": "2023-09-26T07:29:46Z",
+    "status": null,
+    "targetArn": null,
+    "name": "httpTrigger"
+  }
+}

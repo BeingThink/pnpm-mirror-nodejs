@@ -1,0 +1,46 @@
+edition: 1.0.0
+name: web-framework-app
+access: 'pnpm-mirror' # 默认本地用户信息
+
+vars: # 全局变量
+  region: 'cn-hongkong'
+  functionName: 'pnpm-mirror-nodejs'
+  service:
+    name: 'beingthink'
+    description: 'pnpm下载镜像'
+
+services:
+  framework:
+    component: fc # 组件名称，Serverless Devs 工具本身类似于一种游戏机，不具备具体的业务能力，组件类似于游戏卡，用户通过向游戏机中插入不同的游戏卡实现不同的功能，即通过使用不同的组件实现不同的具体业务能力
+
+    props: # 组件的属性值
+      region: ${vars.region} # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
+      service: ${vars.service}
+      function:
+        name: ${vars.functionName}
+        # environment:
+        #   NODE_PATH: /opt/nodejs/node_modules
+        layers:
+          - acs:fc:cn-hongkong:1124413568859761:layers/vinsp-debian10-web-server/versions/1
+        description: 'Serverless Devs Web Framework Function'
+        codeUri: './code'
+        runtime: custom
+        timeout: 60
+        caPort: 9000
+        customRuntimeConfig:
+          command:
+            - ./bootstrap
+        environmentVariables:
+          NODE_PATH: /opt/nodejs/node_modules
+      triggers:
+        - name: httpTrigger
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+      customDomains:
+        - domainName: 'auto'
+          protocol: HTTP
+          routeConfigs:
+            - path: '/*'

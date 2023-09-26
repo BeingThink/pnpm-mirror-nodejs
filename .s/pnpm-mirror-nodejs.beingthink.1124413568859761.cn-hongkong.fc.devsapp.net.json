@@ -1,0 +1,40 @@
+{
+  "domainName": "pnpm-mirror-nodejs.beingthink.1124413568859761.cn-hongkong.fc.devsapp.net",
+  "accountId": "1124413568859761",
+  "protocol": "HTTP",
+  "certConfig": {
+    "certName": null,
+    "privateKey": null,
+    "certificate": null
+  },
+  "tlsConfig": {
+    "minVersion": null,
+    "maxVersion": null,
+    "cipherSuites": null
+  },
+  "apiVersion": "2016-08-15",
+  "routeConfig": {
+    "routes": [
+      {
+        "path": "/*",
+        "accountId": null,
+        "apiVersion": "",
+        "serviceName": "beingthink",
+        "functionName": "pnpm-mirror-nodejs",
+        "qualifier": null,
+        "methods": [
+          "GET"
+        ],
+        "rewriteConfig": null,
+        "innerRewriteConfig": null
+      }
+    ]
+  },
+  "createdTime": "2023-09-26T06:43:46Z",
+  "lastModifiedTime": "2023-09-26T07:29:47Z",
+  "keepFullPath": null,
+  "subdomainCount": null,
+  "wafConfig": {
+    "enableWAF": false
+  }
+}
