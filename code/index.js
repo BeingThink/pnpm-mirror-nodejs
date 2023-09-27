@@ -4,28 +4,35 @@ const app = express()
 const https = require('https')
 const fs = require('fs');
 const os = require('os')
-const fileStream = fs.createWriteStream(path.join(os.tmpdir(), 'pnpm-linux-x64'), {
-  flags: 'w'
-})
 
-function downloadPnpm(httpRes, version, arch) {
-  return new Promise((resolve) => {
-    https.get(`https://github.com/pnpm/pnpm/releases/download/${version}/${arch}`, (response) => {
-      response.pipe(httpRes);
-      response.on('error', (err) => console.log(err))
-      response.on('close', () => {
-        resolve()
-      })
-    });
+function asyncHttps(url) {
+  return new Promise(resolve => {
+    https.get(url, (res) => {
+      resolve(res)
+    })
   })
+}
+
+async function downloadPnpm(client, version, arch) {
+  const defaultUrl = `https://github.com/pnpm/pnpm/releases/download/${version}/${arch}`
+  const pnpmRes = await asyncHttps(defaultUrl)
+  let realPnpmUrl = ''
+  switch (pnpmRes.statusCode) {
+    case 200:
+      realPnpmUrl = defaultUrl
+      break;
+    case 302:
+      realPnpmUrl = pnpmRes.headers.location
+      break;
+  }
+  const pnpmStreamRes = await asyncHttps(realPnpmUrl)
+  pnpmStreamRes.pipe(client)
 }
 
 const router = express.Router()
 
 router.get('/:version/:arch', async (req, res) => {
   if (req.params.arch && req.params.version) {
-    res.setHeader('Content-Disposition', `attachment; filename="pnpm-linux-x64"`);
-    res.setHeader('Access-Control-Allow-Headers', '*')
     await downloadPnpm(res, req.params.version, req.params.arch)
   } else {
     res.end('file not found')
