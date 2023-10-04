@@ -39,6 +39,11 @@ router.get('/:version/:arch', async (req, res) => {
   }
 })
 
+// 解决脚本中curl head验证请求
+router.head('/:version/:arch', (req, res) => {
+  res.end('success')
+})
+
 const scriptPath = path.join(__dirname, './script')
 app.get('/install.sh', (req, res) => {
   const shScript = fs.createReadStream(path.join(scriptPath, 'install.sh'))
