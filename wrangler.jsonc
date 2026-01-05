@@ -4,6 +4,11 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
+	"compatibility_flags": [
+    "nodejs_compat",
+		"enable_nodejs_http_server_modules",
+		"enable_nodejs_fs_module"
+  ],
 	"name": "cloudflare-worker-pnpm-mirror",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-01-03",
