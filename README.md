@@ -1,0 +1,1 @@
+使用了cloudflare worker，提供pnpm独立脚本安装代理
